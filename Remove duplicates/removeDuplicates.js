@@ -11,7 +11,7 @@ const removeDuplicates = (nums) => {
 			i++
 		}
 	}
-	return nums.length
+	return nums
 }
 
 const result = removeDuplicates(nums)
