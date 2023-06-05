@@ -5,9 +5,14 @@ const k = parseInt(lines[0])
 const string = lines[1]
 
 const niceString = (k, string) => {
-	let maxNiceString = 0
+	let set = new Set()
 	for (let i = 0; i < string.length; i++) {
-		const letter = string[i];
+		if (!set.has(string[i])) {
+			set.add(string[i])
+		} 
+	}
+	let maxNiceString = 0
+	for (const letter of set) {
 		let kLeft = k
 		let left = 0
 		let right = 0
