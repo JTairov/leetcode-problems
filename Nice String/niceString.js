@@ -4,19 +4,34 @@ const lines = fileContent.split(/[\r\n]/gi).filter(item => item != '')
 const k = parseInt(lines[0])
 const string = lines[1]
 
-
 const niceString = (k, string) => {
-	let maxLength = 1
-	let left = 1
-	let current = 1
-	let kLeft = k
+	let maxNiceString = 0
 	for (let i = 0; i < string.length; i++) {
-		
-		maxLength = Math.max(maxLength, current)
+		const letter = string[i];
+		let kLeft = k
+		let left = 0
+		let right = 0
+		let current = 0
+		while (right < string.length) {
+			if (string[right] === letter) {
+				current++
+				right++
+			} else if (string[right] !== letter && kLeft > 0) {
+				kLeft--
+				right++
+				current++
+			} else {
+				left++
+				kLeft = k
+				current = 0
+				right = left
+			}
+			maxNiceString = Math.max(maxNiceString, current)
+		}
 	}
-	return maxLength
+	return maxNiceString
 }
-const result = niceString(k, 'helto')
+const result = niceString(k, string)
 console.log(result)
 
 fs.writeFileSync("output.txt", result.toString())
