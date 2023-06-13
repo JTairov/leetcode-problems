@@ -13,7 +13,7 @@ function twoSum(numbers, target) {
 			right--
 		}
 	}
-	result.push(left + 1, right + 1)
+	result.push(left, right)
 	return result
 }
 
